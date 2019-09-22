@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:padding="7dp"
+        android:id="@+id/layout"
+        android:layout_width="54dp"
+        android:layout_height="70dp">
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="#000"
+            android:textSize="12sp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/day"
+    />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="35dp"
+            android:layout_marginTop="2dp"
+
+            android:layout_height="35dp"
+            android:id="@+id/circleImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/day"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/date"
+              android:textColor="#000"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/day"
+              app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.ConstraintLayout>

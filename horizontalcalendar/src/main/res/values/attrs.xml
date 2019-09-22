@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HorizontalCalender">
+        <attr name="android:textColor" format="color"/>
+        <attr name="calenderIcon" format="reference"/>
+        <attr name="closeIcon" format="reference"/>
+        <attr name="todayIcon" format="reference"/>
+        <attr name="font" format="reference"/>
+        <attr name="selectedColor" format="color"/>
+        <attr name="strokeColor" format="color"/>
+        <attr name="strokeWidth" format="integer"/>
+        <attr name="unSelectedColor" format="color"/>
+        <attr name="android:text" format="string"/>
+        <attr name="dayView" format="boolean"/>
+        <attr name="showTodayIcon" format="boolean"/>
+    </declare-styleable>
+</resources>
