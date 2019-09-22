@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:padding="7dp"
@@ -13,8 +13,7 @@
             android:textColor="#000"
             android:textSize="12sp"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:id="@+id/day"
-    />
+            android:id="@+id/day" />
 
     <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="35dp"
@@ -37,4 +36,4 @@
               app:layout_constraintTop_toBottomOf="@id/day"
               app:layout_constraintEnd_toEndOf="parent"/>
 
-</androidx.constraintlayout.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
