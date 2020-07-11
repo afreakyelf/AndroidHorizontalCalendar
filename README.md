@@ -26,7 +26,7 @@ dependencies {
 ```
 
 ## How to use the library?
-Okay seems like you integrated the library in your project but **how do you use it**? Well its really easy just add the following to your xml design to show the otpview
+Okay seems like you integrated the library in your project but **how do you use it**? Well its really easy just add the following to your xml design to show the calendar
 
 ```xml
 .....
@@ -47,7 +47,7 @@ Okay seems like you integrated the library in your project but **how do you use 
 
 That's pretty much it and your all wrapped up.
 
-## OtpView Attributes
+## Attributes
 | Attribute | Use |
 | ----------| --- |
 | app:selectedColor | sets the Color of item you select |
