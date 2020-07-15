@@ -2,6 +2,7 @@
 <p align="center">
 A custom Horizontal Calendar with multiple customization options.
 <br>
+<br>
 <img src="https://raw.githubusercontent.com/afreakyelf/HorizontalCalendarLibrary/master/WhatsApp%20Image%202019-09-23%20at%2021.28.42.jpeg" width="420" height="260" />
 </p>
 
