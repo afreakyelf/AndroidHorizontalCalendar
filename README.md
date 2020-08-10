@@ -3,8 +3,10 @@
 A custom Horizontal Calendar with multiple customization options.
 <br>
 <br>
-<img src="https://raw.githubusercontent.com/afreakyelf/HorizontalCalendarLibrary/master/WhatsApp%20Image%202019-09-23%20at%2021.28.42.jpeg" width="420" height="260" />
+<img src="https://raw.githubusercontent.com/afreakyelf/HorizontalCalendarLibrary/master/sample.png" width="420" height="800" />
 </p>
+
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## How to integrate into your app?
 Integrating the project is simple a refined all you need to do is follow the below steps
@@ -38,7 +40,6 @@ Okay seems like you integrated the library in your project but **how do you use 
         app:selectedColor="#000"
         app:strokeColor="@color/colorAccent"
         app:strokeWidth="4"
-        app:calenderIcon="@drawable/cal" //Mandatory
         app:dayView="true"
         app:showTodayIcon="true"
         app:unSelectedColor="#7485C9"
@@ -55,10 +56,21 @@ That's pretty much it and your all wrapped up.
 | app:unSelectedColor | sets the Color of item you didn't select |
 | app:strokeColor | Color Of the Stroke |
 | app:strokeWidth | sets the stroke width |
-| app:calenderIcon | sets the icon for your calendar |
 | app:dayView | sets whether you want days to be shown or not |
 | app:showTodayIcon | sets icon for today |
 
+
+
+## Donations
+**This project needs you!** If you would like to support this project's further development, the creator of this project or the continuous maintenance of this project, **feel free to donate**. Your donation is highly appreciated (and I love food, Tea and beer). Thank you!
+
+**PayPal**
+
+- [**Donate 5 $**](https://www.paypal.me/afreakyelf): Thank's for creating this project, here's a Tea (or some beer) for you!
+- [**Donate 10 $**](https://www.paypal.me/afreakyelf): Wow, I am stunned. Let me take you to the movies!
+- [**Donate 15 $**](https://www.paypal.me/afreakyelf): I really appreciate your work, let's grab some lunch!
+- [**Donate 25 $**](https://www.paypal.me/afreakyelf): That's some awesome stuff you did right there, dinner is on me!
+- Or you can also [**choose what you want to donate**](https://www.paypal.me/afreakyelf), all donations are awesome!
 
 ## Author
 Maintained by [Rajat Mittal](https://www.github.com/afreakyelf)
