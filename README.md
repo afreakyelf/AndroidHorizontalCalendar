@@ -25,7 +25,7 @@ allprojects {
 Step 2. Add the dependency
 ```java
 dependencies {
-    implementation 'com.github.afreakyelf:HorizontalCalendarLibrary:<latest_version>'
+    implementation 'com.github.afreakyelf:AndroidHorizontalCalendar:<latest_version>'
 }
 ```
 
