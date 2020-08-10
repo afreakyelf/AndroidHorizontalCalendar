@@ -1,37 +1,36 @@
 package com.example.horizontalcalendar
 
-
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.OvalShape
 import android.os.Build
+
+
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+
 import android.widget.TextView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.date_item.view.*
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.OvalShape
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.horizontalcalendar.AdapterForDates.Companion.attributes
-import com.example.horizontalcalendar.AdapterForDates.Companion.expandableRelativeLayout
-import com.github.aakira.expandablelayout.ExpandableLayoutListener
-import com.github.aakira.expandablelayout.ExpandableRelativeLayout
-import kotlinx.android.synthetic.main.date_item.view.*
+import kotlinx.android.synthetic.main.calenderview.view.*
 import java.text.DateFormatSymbols
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.log
 
 
 class HorizontalCalender @JvmOverloads constructor(
@@ -44,104 +43,34 @@ class HorizontalCalender @JvmOverloads constructor(
     private var mEndDate: Date? = null
     private var mMonths = DateFormatSymbols().months
     private var mStartD: Date? = null
-    private var today: ImageView? = null
     private lateinit var mBaseDateList: ArrayList<Date>
     private val mCal = Calendar.getInstance()
     private var dates_rv: RecyclerView? = null
     private var month: TextView? = null
-    private var show: ImageView? = null
-    private var close: ImageView? = null
     private var mFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.US)
-
     private var mTextColor: Int? = null
-    private var mTodayIcon: Drawable? = null
-    private var mCalendarIcon: Drawable? = null
-    private var mCloseIcon: Drawable? = null
     private var mShowTodayIcon: Boolean? = null
-
 
     init {
         View.inflate(context, R.layout.calenderview, this)
         attributes = context.obtainStyledAttributes(attrs, R.styleable.HorizontalCalender)
-        show = findViewById(R.id.show)
         dates_rv = findViewById(R.id.dates_rv)
         month = findViewById(R.id.month)
-        close = findViewById(R.id.close)
-
         setShowTodayIcon(
             attributes?.getBoolean(
                 R.styleable.HorizontalCalender_showTodayIcon,
                 false
             )
         )
-        today = findViewById(R.id.today)
-
-        if (getShowTodayIcon() == false) {
-            today!!.visibility = View.GONE
-        } else {
-            setTodayIcon(attributes?.getDrawable(R.styleable.HorizontalCalender_todayIcon))
-            today?.setImageDrawable(getTodayIcon())
-        }
-
-        setCalendarIcon(attributes?.getDrawable(R.styleable.HorizontalCalender_calenderIcon))
-        setCloseIcon(attributes?.getDrawable(R.styleable.HorizontalCalender_closeIcon))
-
-        show?.setImageDrawable(getCalendarIcon())
-        close?.setImageDrawable(getCloseIcon())
-
-
-        expandableRelativeLayout = findViewById(R.id.expandableLinearLayout2)
-        show?.setOnClickListener {
-            expandableRelativeLayout?.expand()
-        }
-        close?.setOnClickListener {
-            expandableRelativeLayout?.collapse()
-        }
-
-
-        dates_rv?.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-            } else {
-                Toast.makeText(context, "lost", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-
-
-        expandableRelativeLayout?.setListener(object : ExpandableLayoutListener {
-            override fun onAnimationStart() {}
-
-            override fun onAnimationEnd() {}
-
-            override fun onPreOpen() {
-                show?.visibility = View.GONE
-            }
-
-            override fun onPreClose() {
-
-            }
-
-            override fun onOpened() {
-                show?.visibility = View.GONE
-
-            }
-
-            override fun onClosed() {
-                show?.visibility = View.VISIBLE
-            }
-        })
-
-
-        horizontalDates()
-
         setTextColorA(attributes!!.getColor(R.styleable.HorizontalCalender_android_textColor, 0))
         month?.setTextColor(getTextColorA()!!)
-
-
     }
 
+    fun initialize(dateItemClickListener: DateItemClickListener){
+        horizontalDates(dateItemClickListener)
+    }
 
-    private fun horizontalDates() {
+    private fun horizontalDates(dateItemClickListener: DateItemClickListener) {
         mFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.US)
         mStartD = Date()
         val calendar = Calendar.getInstance()
@@ -152,10 +81,9 @@ class HorizontalCalender @JvmOverloads constructor(
         calendar.add(Calendar.MONTH, -1)
         mEndDate = calendar.time
         mBaseDateList = getDates(mFormatter.format(mEndDate), mFormatter.format(mStartD))
-        setAdapter(mBaseDateList)
+        setAdapter(mBaseDateList,dateItemClickListener)
         val layoutManager3 = dates_rv?.layoutManager as LinearLayoutManager
         layoutManager3.scrollToPosition(mBaseDateList.size - 1)
-
 
     }
 
@@ -191,7 +119,8 @@ class HorizontalCalender @JvmOverloads constructor(
     }
 
     private fun setAdapter(
-        dates: ArrayList<Date>
+        dates: ArrayList<Date>,
+        dateItemClickListener: DateItemClickListener
     ) {
 
         val mFinalDates = ArrayList<Model>()
@@ -219,10 +148,11 @@ class HorizontalCalender @JvmOverloads constructor(
         dates_rv?.layoutManager = layoutManager
         layoutManager.scrollToPosition(30)
 
-        dates_rv?.adapter = AdapterForDates(mFinalDates, context, clickedDate, dates)
+        dates_rv?.adapter = AdapterForDates(mFinalDates, context, clickedDate, dates,dateItemClickListener)
 
         today?.setOnClickListener {
             layoutManager.scrollToPosition(mFinalDates.size - 1)
+            today.visibility = View.GONE
         }
 
         val dateSetListener =
@@ -239,7 +169,7 @@ class HorizontalCalender @JvmOverloads constructor(
                 month?.text =
                     mMonths[calendarSelect.get(Calendar.MONTH)] + ", " + calendarSelect.get(Calendar.YEAR)
                 mBaseDateList = getDates(mFormatter.format(endDate), mFormatter.format(mStartD))
-                setAdapter(mBaseDateList)
+                setAdapter(mBaseDateList, dateItemClickListener)
                 mEndDate = endDate
                 if (mBaseDateList.size > 30) {
                     dates_rv?.smoothScrollToPosition(32)
@@ -287,6 +217,7 @@ class HorizontalCalender @JvmOverloads constructor(
                     if (dy < 0 || dx < 0) {
                         if (dx < 0) {
                             Log.d("status", "Scrolled LEFT")
+                            if (getShowTodayIcon()!!) today.visibility = View.VISIBLE
                             val calendar = Calendar.getInstance()
                             calendar.time = mEndDate
                             calendar.add(Calendar.MONTH, -1)
@@ -295,7 +226,7 @@ class HorizontalCalender @JvmOverloads constructor(
                                 mMonths[calendar.get(Calendar.MONTH)] + ", " + calendar.get(Calendar.YEAR)
                             mBaseDateList =
                                 getDates(mFormatter.format(tempEndDate), mFormatter.format(mStartD))
-                            setAdapter(mBaseDateList)
+                            setAdapter(mBaseDateList, dateItemClickListener)
                             mEndDate = tempEndDate
                         }
                     }
@@ -313,10 +244,13 @@ class HorizontalCalender @JvmOverloads constructor(
                             }
                             if (dx > 0) {
                                 Log.d("status", "Scrolled RIGHT")
+                                today.visibility = View.GONE
                             }
                         }
                     } else {
                         if (dx < 0) {
+                            Log.d("status", "Scrolled LEFT")
+                            if (getShowTodayIcon()!!) today.visibility = View.VISIBLE
                             val calendar = Calendar.getInstance()
                             val date = mBaseDateList[mFirstCompleteVisibleItemPosition + 1]
                             calendar.time = date
@@ -344,30 +278,6 @@ class HorizontalCalender @JvmOverloads constructor(
     }
 
 
-    private fun setCalendarIcon(image: Drawable?) {
-        this.mCalendarIcon = image
-    }
-
-    private fun getCalendarIcon(): Drawable? {
-        return mCalendarIcon
-    }
-
-    private fun setCloseIcon(image: Drawable?) {
-        this.mCloseIcon = image
-    }
-
-    private fun getCloseIcon(): Drawable? {
-        return mCloseIcon
-    }
-
-    private fun setTodayIcon(image: Drawable?) {
-        this.mTodayIcon = image
-    }
-
-    private fun getTodayIcon(): Drawable? {
-        return mTodayIcon
-    }
-
     private fun setShowTodayIcon(image: Boolean?) {
         this.mShowTodayIcon = image
     }
@@ -378,12 +288,12 @@ class HorizontalCalender @JvmOverloads constructor(
 
 }
 
-
 private class AdapterForDates(
     private val mModelItems: ArrayList<Model>,
     private val mContext: Context,
     private val mDatesList: ArrayList<String>,
-    private val fullFormatDate: ArrayList<Date>
+    private val fullFormatDate: ArrayList<Date>,
+    private val dateItemClickListener: DateItemClickListener
 ) : RecyclerView.Adapter<AdapterForDates.ViewHolder>() {
 
     private var mPreviousIndex: Int? = -1
@@ -395,7 +305,6 @@ private class AdapterForDates(
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.date_item, p0, false))
-
     }
 
     override fun getItemCount(): Int {
@@ -427,18 +336,13 @@ private class AdapterForDates(
 
         p0.layout.setOnClickListener {
             val date = mDatesList[p1]
-            Toast.makeText(mContext, date, Toast.LENGTH_SHORT).show()
+            dateItemClickListener.onDateClick(date)
 
             val calendar = Calendar.getInstance()
             calendar.time = fullFormatDate[p1]
             mMonth = mMonths[calendar.get(Calendar.MONTH)] + ", " + calendar.get(Calendar.YEAR)
-
             mPreviousIndex = p1
-
-            expandableRelativeLayout!!.collapse()
-
             notifyDataSetChanged()
-
         }
 
 
@@ -468,7 +372,6 @@ private class AdapterForDates(
             Color.BLUE
         } else {
             getStrokeColorA()
-
         }
 
         mUnSelectedColor = if (mUnSelectedColor == 0) {
@@ -519,7 +422,6 @@ private class AdapterForDates(
                     p0.imageView.background = shape
 
                 }
-
             } else {
 
                 val oval = ShapeDrawable(OvalShape())
@@ -527,7 +429,6 @@ private class AdapterForDates(
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     p0.imageView.background = oval
                 }
-
             }
 
 
@@ -545,8 +446,6 @@ private class AdapterForDates(
     companion object {
         var mMonth: String? = null
         var attributes: TypedArray? = null
-        var expandableRelativeLayout: ExpandableRelativeLayout? = null
-
     }
 
     private fun setSelectedColorA(color: Int) {

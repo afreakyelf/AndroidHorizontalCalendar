@@ -2,9 +2,6 @@
 <resources>
     <declare-styleable name="HorizontalCalender">
         <attr name="android:textColor" format="color"/>
-        <attr name="calenderIcon" format="reference"/>
-        <attr name="closeIcon" format="reference"/>
-        <attr name="todayIcon" format="reference"/>
         <attr name="font" format="reference"/>
         <attr name="selectedColor" format="color"/>
         <attr name="strokeColor" format="color"/>
