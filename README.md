@@ -1,4 +1,4 @@
-<h1 align="center">HorizontalCalendarLibrary</h1>
+<h1 align="center">Android Horizontal Calendar Library</h1>
 <p align="center">
 A custom Horizontal Calendar with multiple customization options.
 <br>
