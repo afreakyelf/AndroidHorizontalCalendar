@@ -6,7 +6,8 @@ A custom Horizontal Calendar with multiple customization options.
 <img src="https://raw.githubusercontent.com/afreakyelf/HorizontalCalendarLibrary/master/sample.png" width="420" height="800" />
 </p>
 
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/Apache-2.0) [![](https://jitpack.io/v/afreakyelf/AndroidHorizontalCalendar.svg)](https://jitpack.io/#afreakyelf/AndroidHorizontalCalendar)
+
 
 ## How to integrate into your app?
 Integrating the project is simple a refined all you need to do is follow the below steps
