@@ -47,7 +47,7 @@ Okay seems like you have integrated the library in your project but **how do you
 ```
 then initialize this in following way : 
 ```kotlin
-        horizontal_calendar.initialize(this)     // You will have to implement DateItemClickListener
+horizontal_calendar.initialize(this)     // You will have to implement DateItemClickListener
 ```
 
 That's pretty much it and you're all wrapped up.
