@@ -33,7 +33,6 @@ dependencies {
 Okay seems like you integrated the library in your project but **how do you use it**? Well its really easy just add the following to your xml design to show the calendar
 
 ```xml
-.....
  <com.example.horizontalcalendar.HorizontalCalender
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +44,10 @@ Okay seems like you integrated the library in your project but **how do you use 
         app:showTodayIcon="true"
         app:unSelectedColor="#7485C9"
         />
-.....
+```
+then initialize this in following way : 
+```kotlin
+        horizontal_calendar.initialize(this)     // You will have to implement DateItemClickListener
 ```
 
 That's pretty much it and your all wrapped up.
