@@ -10,7 +10,7 @@ A custom Horizontal Calendar with multiple customization options.
 
 
 ## How to integrate into your app?
-Integrating the project is simple a refined all you need to do is follow the below steps
+Integrating the project is simple, all you need to do is follow the below steps
 
 Step 1. Add the JitPack repository to your build file. Add it in your root build.gradle at the end of repositories:
 
@@ -30,7 +30,7 @@ dependencies {
 ```
 
 ## How to use the library?
-Okay seems like you integrated the library in your project but **how do you use it**? Well its really easy just add the following to your xml design to show the calendar
+Okay seems like you have integrated the library in your project but **how do you use it**? Well its really easy just add the following to your xml design to show the calendar
 
 ```xml
  <com.example.horizontalcalendar.HorizontalCalender
@@ -50,7 +50,7 @@ then initialize this in following way :
         horizontal_calendar.initialize(this)     // You will have to implement DateItemClickListener
 ```
 
-That's pretty much it and your all wrapped up.
+That's pretty much it and you're all wrapped up.
 
 ## Attributes
 | Attribute | Use |
