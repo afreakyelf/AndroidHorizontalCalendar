@@ -1,4 +1,4 @@
-<h1 align="center">HorizontalCalendarLibrary</h1>
+<h1 align="center">Android Horizontal Calendar Library</h1>
 <p align="center">
 A custom Horizontal Calendar with multiple customization options.
 <br>
@@ -10,7 +10,7 @@ A custom Horizontal Calendar with multiple customization options.
 
 
 ## How to integrate into your app?
-Integrating the project is simple a refined all you need to do is follow the below steps
+Integrating the project is simple, all you need to do is follow the below steps
 
 Step 1. Add the JitPack repository to your build file. Add it in your root build.gradle at the end of repositories:
 
@@ -25,15 +25,14 @@ allprojects {
 Step 2. Add the dependency
 ```java
 dependencies {
-    implementation 'com.github.afreakyelf:HorizontalCalendarLibrary:<latest_version>'
+    implementation 'com.github.afreakyelf:AndroidHorizontalCalendar:<latest_version>'
 }
 ```
 
 ## How to use the library?
-Okay seems like you integrated the library in your project but **how do you use it**? Well its really easy just add the following to your xml design to show the calendar
+Okay seems like you have integrated the library in your project but **how do you use it**? Well its really easy just add the following to your xml design to show the calendar
 
 ```xml
-.....
  <com.example.horizontalcalendar.HorizontalCalender
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,10 +44,13 @@ Okay seems like you integrated the library in your project but **how do you use 
         app:showTodayIcon="true"
         app:unSelectedColor="#7485C9"
         />
-.....
+```
+then initialize this in following way : 
+```kotlin
+horizontal_calendar.initialize(this)     // You will have to implement DateItemClickListener
 ```
 
-That's pretty much it and your all wrapped up.
+That's pretty much it and you're all wrapped up.
 
 ## Attributes
 | Attribute | Use |
