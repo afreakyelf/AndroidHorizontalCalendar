@@ -1,36 +1,32 @@
 package com.example.horizontalcalendar
 
+
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.OvalShape
 import android.os.Build
-
-
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import android.widget.TextView
-import android.widget.Toast
-import kotlinx.android.synthetic.main.date_item.view.*
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.*
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.OvalShape
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.horizontalcalendar.AdapterForDates.Companion.attributes
 import kotlinx.android.synthetic.main.calenderview.view.*
+import kotlinx.android.synthetic.main.date_item.view.*
 import java.text.DateFormatSymbols
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.log
 
 
 class HorizontalCalender @JvmOverloads constructor(
@@ -300,7 +296,7 @@ private class AdapterForDates(
     private var mStrokeColor: Int? = null
     private var mUnSelectedColor: Int? = null
     private var mSelectedColor: Int? = null
-    private var mStrokeWidth: Int? = null
+    private var mStrokeWidth: Float? = null
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
@@ -353,7 +349,7 @@ private class AdapterForDates(
                 0
             )!!
         )
-        setStrokeWidthA(attributes?.getInt(R.styleable.HorizontalCalender_strokeWidth, 0)!!)
+        setStrokeWidthA(attributes?.getDimension(R.styleable.HorizontalCalender_strokeWidth, 0F)!!)
         setStrokeColorA(attributes?.getColor(R.styleable.HorizontalCalender_strokeColor, 0)!!)
 
         mStrokeColor = getStrokeColorA()
@@ -362,8 +358,8 @@ private class AdapterForDates(
         mStrokeWidth = getStrokeWidthA()
 
 
-        mStrokeWidth = if (mStrokeWidth == 0) {
-            4
+        mStrokeWidth = if (mStrokeWidth == 0F) {
+            2f
         } else {
             getStrokeWidthA()
         }
@@ -392,7 +388,7 @@ private class AdapterForDates(
 
             val shape = GradientDrawable()
             shape.shape = GradientDrawable.OVAL
-            shape.setStroke(mStrokeWidth!!, mStrokeColor!!)
+            shape.setStroke(mStrokeWidth!!.toInt(), mStrokeColor!!)
 
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -472,11 +468,11 @@ private class AdapterForDates(
         return mStrokeColor
     }
 
-    private fun setStrokeWidthA(width: Int) {
+    private fun setStrokeWidthA(width: Float) {
         this.mStrokeWidth = width
     }
 
-    private fun getStrokeWidthA(): Int? {
+    private fun getStrokeWidthA(): Float? {
         return mStrokeWidth
     }
 

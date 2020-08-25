@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:textColor="#863A5E"
         app:selectedColor="#03A9F4"
-        app:strokeColor="#673AB7"
-        app:strokeWidth="4"
+        app:strokeColor="#19181C"
         app:dayView="true"
         app:showTodayIcon="true"
     />

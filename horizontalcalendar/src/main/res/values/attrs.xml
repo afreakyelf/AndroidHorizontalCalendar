@@ -5,7 +5,7 @@
         <attr name="font" format="reference"/>
         <attr name="selectedColor" format="color"/>
         <attr name="strokeColor" format="color"/>
-        <attr name="strokeWidth" format="integer"/>
+        <attr name="strokeWidth" format="dimension" />
         <attr name="unSelectedColor" format="color"/>
         <attr name="android:text" format="string"/>
         <attr name="dayView" format="boolean"/>

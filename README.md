@@ -40,7 +40,7 @@ Okay seems like you integrated the library in your project but **how do you use 
         android:textColor="#863A5E"
         app:selectedColor="#000"
         app:strokeColor="@color/colorAccent"
-        app:strokeWidth="4"
+        app:strokeWidth="4dp"
         app:dayView="true"
         app:showTodayIcon="true"
         app:unSelectedColor="#7485C9"
